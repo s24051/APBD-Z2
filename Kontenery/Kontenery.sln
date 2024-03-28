@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kontenery-cli", "kontenery-cli\kontenery-cli.csproj", "{CF840FB6-5F3B-4465-A50A-9889AF4428E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF840FB6-5F3B-4465-A50A-9889AF4428E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF840FB6-5F3B-4465-A50A-9889AF4428E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF840FB6-5F3B-4465-A50A-9889AF4428E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF840FB6-5F3B-4465-A50A-9889AF4428E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
