@@ -6,17 +6,19 @@ namespace kontenery_cli.Modele;
 
 public class ContainerGas : Container, IHazardNotifier
 {
+    private double MIN_LOAD = 0.05;
     private double maxPsi;
     public ContainerGas(double height, double depth, double massMax, double tare, double maxPsi)
         : base(height, depth, massMax, tare)
     {
         type = EContainerType.GAS;
         this.maxPsi = maxPsi;
+        Load(massMax * MIN_LOAD);
     }
 
     public override double Unload()
     {
-        double min = massMax * 0.05;
+        double min = massMax * MIN_LOAD;
         if (mass < min)
         {
             printHazardWarning("A minimum of 5% is required to be inside!", Serial());

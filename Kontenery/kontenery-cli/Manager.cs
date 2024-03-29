@@ -59,23 +59,18 @@ public class Manager
         
         ship.Unload(container);
         containers[container.Serial()] = container;
-        ship.AddContainer(newContainer);
+        AddContainerToShip(ship, container.Serial());
     }
 
     public void MoveContainerOntoShip(string source, string serial, string target)
     {
-        if (!ships.ContainsKey(source))
-            throw new Exception("Nonexistent ship: " + source);
-        Ship src = ships[source];
+        Ship src = GetShip(source); // throws Exception
         
         if (!src.containers.ContainsKey(serial))
             throw new Exception(serial + " not on ship " + source);
         Container container = src.containers[serial];
         
-        if (!ships.ContainsKey(target))
-            throw new Exception("Nonexistent ship: " + target);
-        Ship dst = ships[target];
-
+        Ship dst = GetShip(target); // throws Exception
         if (!dst.TestWeight(container.TotalWeight()))
         {
             Console.WriteLine(dst);
@@ -92,8 +87,37 @@ public class Manager
         return containers.Values.ToList();
     }
 
+    public Container GetContainer(string serial)
+    {
+        if (!containers.ContainsKey(serial))
+            throw new Exception("Invalid serial: " + serial);
+        return containers[serial];
+    }
+
     public List<Ship> GetShips()
     {
         return ships.Values.ToList();
+    }
+    public Ship GetShip(string serial)
+    {
+        if (!ships.ContainsKey(serial))
+            throw new Exception("Invalid serial: " + serial);
+        return ships[serial];
+    }
+
+    public void AddContainerToShip(Ship ship, string containerId)
+    {
+        Container container = GetContainer(containerId);
+        ship.AddContainer(container);
+        containers.Remove(container.Serial());
+    }
+
+    public void AddContainersToShip(Ship ship, List<Container> _containers)
+    {
+        ship.AddContainers(_containers);
+        foreach (Container container in _containers)
+        {
+            containers.Remove(container.Serial());
+        }
     }
 }
